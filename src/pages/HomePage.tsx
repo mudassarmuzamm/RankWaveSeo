@@ -10,6 +10,7 @@ import { ServiceCard } from '../components/ServiceCard';
 import { CaseStudyCard } from '../components/CaseStudyCard';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { CTASection } from '../components/CTASection';
+import { HeroMeetingCalendar } from '../components/HeroMeetingCalendar';
 import {
   FileCode2,
   Share2,
@@ -29,6 +30,8 @@ import {
   Briefcase,
   Layers,
   Search,
+  Video,
+  Calendar,
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
@@ -113,61 +116,91 @@ export const HomePage: React.FC = () => {
       <SEOHead meta={meta} faqs={GENERAL_FAQS} />
 
       {/* Hero Section */}
-      <section className="relative pt-12 pb-20 sm:pt-16 sm:pb-24 overflow-hidden bg-gradient-to-b from-blue-50/50 via-slate-50 to-slate-50 border-b border-slate-200">
+      <section className="relative pt-10 pb-16 sm:pt-14 sm:pb-20 overflow-hidden bg-gradient-to-b from-blue-50/50 via-slate-50 to-slate-50 border-b border-slate-200">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-blue-500/10 blur-[130px] pointer-events-none -z-10 rounded-full" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 border border-blue-200 mb-6 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              <span>Data-Driven Organic Growth</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            {/* Left Content Column */}
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 border border-blue-200 mb-5 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                <span>Data-Driven Organic Growth</span>
+              </div>
+
+              {/* STRICTLY SINGLE H1 FOR HOMEPAGE */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15] mb-5">
+                SEO Agency in Pakistan That Helps Your Business Grow
+              </h1>
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-7 max-w-2xl">
+                RankWave SEO engineers search visibility from the ground up. We combine technical rigor, search intent mapping, and white-hat authority building to capture high-intent customers and drive compounding revenue.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8">
+                <button
+                  type="button"
+                  id="home-primary-audit-cta"
+                  onClick={() => navigate('/free-seo-audit/')}
+                  className="px-6 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                >
+                  <Sparkles className="w-4 h-4 text-blue-200" />
+                  <span>Get a Free SEO Audit</span>
+                </button>
+
+                <button
+                  type="button"
+                  id="home-secondary-services-cta"
+                  onClick={() => navigate('/services/')}
+                  className="px-6 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-700 bg-white border border-slate-300 hover:border-blue-400 hover:text-blue-600 hover:bg-slate-50 active:scale-[0.98] shadow-sm transition-all flex items-center justify-center gap-2"
+                >
+                  <span>Explore SEO Services</span>
+                  <ArrowRight className="w-4 h-4 text-slate-400" />
+                </button>
+              </div>
+
+              {/* Google Meet Direct Banner Link */}
+              <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between gap-3 text-xs mb-8">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 rounded-lg bg-blue-600 text-white shrink-0">
+                    <Video className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="font-bold text-slate-900 block">Instant Google Meet Strategy Call</span>
+                    <span className="text-slate-500 text-[11px]">Free 30-min discovery session with our Lead SEO Strategist</span>
+                  </div>
+                </div>
+                <a
+                  href="https://meet.google.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shrink-0 flex items-center gap-1 shadow-sm transition-all"
+                >
+                  <span>Meet Now</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+
+              {/* Value Indicators */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 pt-6 border-t border-slate-200 text-xs text-slate-600">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" />
+                  <span>100% White-Hat Standards</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <BarChart3 className="w-4 h-4 text-blue-600 shrink-0" />
+                  <span>Search Console Reporting</span>
+                </div>
+                <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                  <span>Month-to-Month Flexibility</span>
+                </div>
+              </div>
             </div>
 
-            {/* STRICTLY SINGLE H1 FOR HOMEPAGE */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12] mb-6">
-              SEO Agency in Pakistan That Helps Your Business Grow
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl">
-              RankWave SEO engineers search visibility from the ground up. We combine technical rigor, search intent mapping, and white-hat authority building to capture high-intent customers and drive compounding revenue.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center gap-3.5">
-              <button
-                type="button"
-                id="home-primary-audit-cta"
-                onClick={() => navigate('/free-seo-audit/')}
-                className="w-full sm:w-auto px-7 py-4 rounded-xl font-semibold text-sm text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
-              >
-                <Sparkles className="w-4 h-4 text-blue-200" />
-                <span>Get a Free SEO Audit</span>
-              </button>
-
-              <button
-                type="button"
-                id="home-secondary-services-cta"
-                onClick={() => navigate('/services/')}
-                className="w-full sm:w-auto px-7 py-4 rounded-xl font-semibold text-sm text-slate-700 bg-white border border-slate-300 hover:border-blue-400 hover:text-blue-600 hover:bg-slate-50 active:scale-[0.98] shadow-sm transition-all flex items-center justify-center gap-2"
-              >
-                <span>Explore SEO Services</span>
-                <ArrowRight className="w-4 h-4 text-slate-400" />
-              </button>
-            </div>
-
-            {/* Value Indicators */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-10 mt-10 border-t border-slate-200 text-xs sm:text-sm text-slate-600">
-              <div className="flex items-center gap-2.5">
-                <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>100% White-Hat Standards</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <BarChart3 className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Search Console Reporting</span>
-              </div>
-              <div className="flex items-center gap-2.5 col-span-2 sm:col-span-1">
-                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Month-to-Month Flexibility</span>
-              </div>
+            {/* Right Interactive Calendar Widget */}
+            <div className="lg:col-span-5 w-full">
+              <HeroMeetingCalendar id="hero-meeting-scheduler" />
             </div>
           </div>
         </div>

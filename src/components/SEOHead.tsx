@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { SEOMeta, BreadcrumbItem, FAQItem } from '../types';
 import { BASE_URL } from '../context/RouterContext';
+import { COMPANY_INFO } from '../data/companyData';
 
 interface SEOHeadProps {
   meta: SEOMeta;
@@ -58,21 +59,47 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     const schemas: object[] = [];
 
-    // Base Organization Schema
+    // Base Professional Service / LocalBusiness / Organization Schema
     schemas.push({
       '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'RankWave SEO',
+      '@type': ['ProfessionalService', 'Organization', 'LocalBusiness'],
+      name: COMPANY_INFO.name,
+      legalName: COMPANY_INFO.legalName,
       url: BASE_URL,
       logo: `${BASE_URL}/logo.png`,
-      description: 'Professional SEO agency in Pakistan providing technical, on-page, off-page, and local search optimization services.',
+      email: COMPANY_INFO.email,
+      telephone: COMPANY_INFO.phoneFormatted,
+      description: 'Professional SEO agency in Pakistan providing technical, on-page, off-page, and local search engine optimization services.',
       address: {
         '@type': 'PostalAddress',
-        addressCountry: 'PK',
+        streetAddress: COMPANY_INFO.address.street,
+        addressLocality: COMPANY_INFO.address.city,
+        addressRegion: COMPANY_INFO.address.region,
+        postalCode: COMPANY_INFO.address.postalCode,
+        addressCountry: COMPANY_INFO.address.countryCode,
       },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '31.5036',
+        longitude: '74.3318',
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Thursday', 'Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: 'Wednesday',
+          opens: '00:00',
+          closes: '01:00',
+        },
+      ],
       sameAs: [
-        'https://twitter.com/rankwaveseo',
-        'https://linkedin.com/company/rankwaveseo',
+        COMPANY_INFO.socials.facebook,
+        COMPANY_INFO.socials.pinterest,
       ],
     });
 

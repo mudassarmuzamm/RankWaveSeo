@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { PAGES_META } from '../data/pagesMeta';
 import { CONTACT_FAQS } from '../data/faqData';
+import { COMPANY_INFO } from '../data/companyData';
 import { SEOHead } from '../components/SEOHead';
 import { PageHero } from '../components/PageHero';
 import { FAQAccordion } from '../components/FAQAccordion';
@@ -13,8 +14,9 @@ import {
   Send,
   CheckCircle2,
   Sparkles,
-  ShieldCheck,
-  Building2,
+  ExternalLink,
+  MessageSquare,
+  Video,
   Calendar,
 } from 'lucide-react';
 
@@ -130,7 +132,7 @@ export const ContactPage: React.FC = () => {
                         id="contact-email"
                         type="email"
                         required
-                        placeholder="name@company.com"
+                        placeholder={COMPANY_INFO.email}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white"
@@ -146,7 +148,7 @@ export const ContactPage: React.FC = () => {
                       <input
                         id="contact-phone"
                         type="text"
-                        placeholder="+92 300 1234567"
+                        placeholder={COMPANY_INFO.phoneFormatted}
                         value={formData.phoneWhatsapp}
                         onChange={(e) => setFormData({ ...formData, phoneWhatsapp: e.target.value })}
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white"
@@ -240,7 +242,8 @@ export const ContactPage: React.FC = () => {
             </div>
 
             {/* Direct Contact Information */}
-            <div className="lg:col-span-5 space-y-8">
+            <div className="lg:col-span-5 space-y-6">
+              {/* Direct Channels Box */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 inline-block mb-2">
@@ -252,59 +255,148 @@ export const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="space-y-4 text-xs sm:text-sm">
+                  {/* Email */}
                   <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
                     <div className="p-2 rounded-lg bg-blue-50 text-blue-600 shrink-0">
                       <Mail className="w-4 h-4" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <span className="text-slate-500 block text-xs">Official Email</span>
                       <a
-                        href="mailto:contact@rankwaveseo.com"
-                        className="font-semibold text-slate-900 hover:text-blue-600 transition-colors"
+                        href={`mailto:${COMPANY_INFO.email}`}
+                        className="font-semibold text-slate-900 hover:text-blue-600 transition-colors break-all"
                       >
-                        contact@rankwaveseo.com
+                        {COMPANY_INFO.email}
                       </a>
                     </div>
                   </div>
 
+                  {/* Google Meet */}
+                  <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-blue-50/60 border border-blue-200 shadow-sm">
+                    <div className="p-2 rounded-lg bg-blue-600 text-white shrink-0">
+                      <Video className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-blue-700 block text-xs font-semibold">Google Meet Video Consultation</span>
+                      <a
+                        href={COMPANY_INFO.googleMeet.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-blue-900 hover:text-blue-700 transition-colors flex items-center gap-1 text-xs"
+                      >
+                        <span>Open 1-on-1 Google Meet Room</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
                   <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
                     <div className="p-2 rounded-lg bg-blue-50 text-blue-600 shrink-0">
                       <Phone className="w-4 h-4" />
                     </div>
                     <div>
-                      <span className="text-slate-500 block text-xs">Phone & WhatsApp Inquiries</span>
+                      <span className="text-slate-500 block text-xs">Phone Consultation</span>
                       <a
-                        href="tel:+923001234567"
+                        href={`tel:${COMPANY_INFO.phoneTel}`}
                         className="font-semibold text-slate-900 hover:text-blue-600 transition-colors"
                       >
-                        +92 300 1234567
+                        {COMPANY_INFO.phone} ({COMPANY_INFO.phoneFormatted})
                       </a>
                     </div>
                   </div>
 
+                  {/* WhatsApp */}
+                  <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-200 shadow-sm">
+                    <div className="p-2 rounded-lg bg-emerald-100 text-emerald-700 shrink-0">
+                      <MessageSquare className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-emerald-700 block text-xs font-medium">WhatsApp Direct Chat</span>
+                      <a
+                        href={COMPANY_INFO.whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-emerald-900 hover:text-emerald-700 transition-colors flex items-center gap-1"
+                      >
+                        <span>Chat with Strategist on WhatsApp</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Address */}
                   <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
                     <div className="p-2 rounded-lg bg-blue-50 text-blue-600 shrink-0">
                       <MapPin className="w-4 h-4" />
                     </div>
                     <div>
-                      <span className="text-slate-500 block text-xs">Headquarters</span>
-                      <span className="font-semibold text-slate-900">
-                        Lahore, Punjab, Pakistan
-                      </span>
+                      <span className="text-slate-500 block text-xs">Headquarters Address</span>
+                      <p className="font-semibold text-slate-900 text-xs leading-relaxed">
+                        {COMPANY_INFO.address.full}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                    <div className="p-2 rounded-lg bg-blue-50 text-blue-600 shrink-0">
-                      <Clock className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-slate-500 block text-xs">Business Hours</span>
-                      <span className="font-semibold text-slate-900">
-                        Monday – Friday: 9:00 AM – 6:00 PM (PKT)
-                      </span>
+                  {/* Social Profiles */}
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-2">
+                    <span className="text-slate-500 block text-xs font-medium">Social Profiles</span>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={COMPANY_INFO.socials.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-1.5 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-300 hover:text-blue-600 text-xs font-semibold text-slate-700 text-center transition-colors"
+                      >
+                        Facebook
+                      </a>
+                      <a
+                        href={COMPANY_INFO.socials.pinterest}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-1.5 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-300 hover:text-blue-600 text-xs font-semibold text-slate-700 text-center transition-colors"
+                      >
+                        Pinterest
+                      </a>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Operating Hours Box */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 rounded-lg bg-blue-50 text-blue-600">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900">
+                      Operating Schedule & Working Hours
+                    </h3>
+                    <span className="text-[11px] text-slate-500">PKT Standard Timezone</span>
+                  </div>
+                </div>
+
+                <div className="divide-y divide-slate-100 text-xs">
+                  {COMPANY_INFO.openingHours.map((schedule) => (
+                    <div key={schedule.day} className="py-2 flex items-center justify-between gap-2">
+                      <span className="font-medium text-slate-700">{schedule.day}</span>
+                      <div className="text-right">
+                        <span
+                          className={`font-semibold ${
+                            schedule.isOpen ? 'text-emerald-700' : 'text-slate-400'
+                          }`}
+                        >
+                          {schedule.hours}
+                        </span>
+                        {schedule.note && (
+                          <span className="block text-[10px] text-amber-700 font-medium">
+                            {schedule.note}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 

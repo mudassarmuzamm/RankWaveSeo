@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from '../context/RouterContext';
+import { COMPANY_INFO } from '../data/companyData';
 import {
   TrendingUp,
   Mail,
@@ -7,7 +8,6 @@ import {
   MapPin,
   ArrowRight,
   ShieldCheck,
-  Search,
   CheckCircle2,
 } from 'lucide-react';
 
@@ -54,6 +54,26 @@ export const Footer: React.FC = () => {
                 <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>Transparent Search Console Reporting</span>
               </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="pt-2 flex items-center gap-3">
+              <a
+                href={COMPANY_INFO.socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:text-white text-xs font-semibold text-slate-400 transition-colors flex items-center gap-1.5"
+              >
+                <span>Facebook</span>
+              </a>
+              <a
+                href={COMPANY_INFO.socials.pinterest}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:text-white text-xs font-semibold text-slate-400 transition-colors flex items-center gap-1.5"
+              >
+                <span>Pinterest</span>
+              </a>
             </div>
           </div>
 
@@ -183,18 +203,31 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                <span>Lahore, Punjab, Pakistan (Serving Nationwide & Global Clients)</span>
+                <span className="text-xs leading-relaxed">
+                  {COMPANY_INFO.address.full}
+                </span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-blue-400 shrink-0" />
-                <a href="mailto:contact@rankwaveseo.com" className="hover:text-blue-400 transition-colors">
-                  contact@rankwaveseo.com
+                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-blue-400 transition-colors text-xs">
+                  {COMPANY_INFO.email}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-blue-400 shrink-0" />
-                <a href="https://wa.me/923000000000" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
-                  Direct WhatsApp Consultation
+                <a href={`tel:${COMPANY_INFO.phoneTel}`} className="hover:text-blue-400 transition-colors text-xs font-medium">
+                  {COMPANY_INFO.phone} ({COMPANY_INFO.phoneFormatted})
+                </a>
+              </li>
+              <li>
+                <a
+                  href={COMPANY_INFO.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors font-medium pt-1"
+                >
+                  <span>Direct WhatsApp Chat</span>
+                  <ArrowRight className="w-3 h-3" />
                 </a>
               </li>
               <li className="pt-2">

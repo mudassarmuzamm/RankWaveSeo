@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from '../context/RouterContext';
 import { PAGES_META } from '../data/pagesMeta';
+import { COMPANY_INFO } from '../data/companyData';
 import { SEOHead } from '../components/SEOHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { PageHero } from '../components/PageHero';
@@ -75,7 +76,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               5. Your Data Rights
             </h2>
             <p>
-              You have the right to request access to any personal data held by RankWave SEO, request corrections of inaccuracies, or request complete deletion of your records from our systems by contacting us at contact@rankwaveseo.com.
+              You have the right to request access to any personal data held by RankWave SEO, request corrections of inaccuracies, or request complete deletion of your records from our systems by contacting us at {COMPANY_INFO.email}.
             </p>
           </section>
 
@@ -86,10 +87,11 @@ export const PrivacyPolicyPage: React.FC = () => {
             <p>
               If you have any questions regarding this Privacy Policy, please contact:
             </p>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
               <strong className="text-slate-900 block font-semibold mb-1">RankWave SEO Data Officer</strong>
-              <span>Email: contact@rankwaveseo.com</span><br />
-              <span>Headquarters: Lahore, Punjab, Pakistan</span>
+              <p>Email: <a href={`mailto:${COMPANY_INFO.email}`} className="text-blue-600 hover:underline">{COMPANY_INFO.email}</a></p>
+              <p>Phone: {COMPANY_INFO.phone} ({COMPANY_INFO.phoneFormatted})</p>
+              <p>Address: {COMPANY_INFO.address.full}</p>
             </div>
           </section>
         </div>
